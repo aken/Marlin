@@ -61,14 +61,14 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(BIQU, BIQU-B1)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Gheorghe Rotari, BIQU-B1)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 // @section machine
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_BTT_SKR_V2_0_REV_B
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4 // README.md: #define MOTHERBOARD BOARD_BTT_SKR_V1_4
 #endif
 
 /**
@@ -79,7 +79,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 1
+#define SERIAL_PORT -1 // README.md: #define SERIAL_PORT 0
 
 /**
  * Serial Port Baud Rate
@@ -92,7 +92,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 //#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
 
@@ -101,7 +101,7 @@
  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT_2 -1
+#define SERIAL_PORT_2 0
 //#define BAUDRATE_2 250000   // :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000] Enable to override BAUDRATE
 
 /**
@@ -139,9 +139,9 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TMC2208
-#define Y_DRIVER_TYPE  TMC2208
-#define Z_DRIVER_TYPE  TMC2208
+#define X_DRIVER_TYPE  TMC2209 
+#define Y_DRIVER_TYPE  TMC2209 
+#define Z_DRIVER_TYPE  TMC2209 
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
@@ -153,7 +153,7 @@
 //#define U_DRIVER_TYPE  A4988
 //#define V_DRIVER_TYPE  A4988
 //#define W_DRIVER_TYPE  A4988
-#define E0_DRIVER_TYPE TMC2208
+#define E0_DRIVER_TYPE TMC2209 
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -1189,7 +1189,7 @@
  *
  * :[2,3,4,5,6,7]
  */
-#define ENDSTOP_NOISE_THRESHOLD 4
+#define ENDSTOP_NOISE_THRESHOLD 2 //testing...
 
 // Check for stuck or disconnected endstops during homing moves.
 //#define DETECT_BROKEN_ENDSTOP
@@ -1219,7 +1219,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 192 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -2339,14 +2339,14 @@
 // Preheat Constants - Up to 10 are supported without changes
 //
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED     70
+#define PREHEAT_1_TEMP_HOTEND 215
+#define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
-#define PREHEAT_2_TEMP_HOTEND 240
-#define PREHEAT_2_TEMP_BED    110
+#define PREHEAT_2_TEMP_HOTEND 254
+#define PREHEAT_2_TEMP_BED    100
 #define PREHEAT_2_TEMP_CHAMBER 35
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
@@ -3483,7 +3483,7 @@
   #define NEOPIXEL_PIXELS              4 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
   #define NEOPIXEL_IS_SEQUENTIAL          // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
   #define NEOPIXEL_BRIGHTNESS         127 // Initial brightness (0-255)
-  //#define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup
+  #define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup
 
   // Support for second Adafruit NeoPixel LED driver controlled with M150 S1 ...
   //#define NEOPIXEL2_SEPARATE
